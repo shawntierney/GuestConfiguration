@@ -1,0 +1,34 @@
+{
+    "properties": {
+        "displayName": "[Audit] Windows Server 2019 Security Baseline",
+        "policyType": "Custom",
+        "mode": "All",
+        "description": "Audit to ensure Windows is hardened per Server 2019 Microsoft Security Baseline.",
+        "metadata": {
+            "category": "Guest Configuration"
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.GuestConfiguration/guestConfigurationAssignments"
+                    },
+                    {
+                        "field": "name",
+                        "equals": "2019SecurityBaseline_GuestConfig"
+                    },
+                    {
+                        "field": "Microsoft.GuestConfiguration/guestConfigurationAssignments/complianceStatus",
+                        "notEquals": "Compliant"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "audit"
+            }
+        }
+    },
+    "id": "/providers/Microsoft.Authorization/policyDefinitions/df8c4327-8174-44fa-b05b-c7c0f38241a8",
+    "name": "df8c4327-8174-44fa-b05b-c7c0f38241a8"
+}
